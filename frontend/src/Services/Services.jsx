@@ -5,7 +5,7 @@ import {
   Typography,
   Grid,
   Card,
-  CardContent,
+   Stack,
   Button,
 } from "@mui/material";
 import {
@@ -19,6 +19,10 @@ import {
 import Servicesimg1 from "../assets/Services-img1.png";
 import Footer from "../Components/Footer";
 import { useNavigate } from "react-router-dom";
+import CampaignIcon from "@mui/icons-material/Campaign";
+import BusinessIcon from "@mui/icons-material/Business";
+import EventIcon from "@mui/icons-material/Event";
+import TouchAppIcon from "@mui/icons-material/TouchApp";
 
 
 // Our Services
@@ -64,6 +68,37 @@ const services = [
 ];
 
 const Services = () => {
+
+  const solutions = [
+    {
+      title: "Campaign Microsites",
+      description:
+        "Ideal for product launches, seasonal campaigns, or events that demand attention and engagement.",
+      icon: <CampaignIcon sx={{ fontSize: 55 }} />,
+      color: "#2563eb", // blue
+    },
+    {
+      title: "Corporate Partnerships",
+      description:
+        "Dedicated portals for B2B collaborations and co-branded experiences with seamless performance.",
+      icon: <BusinessIcon sx={{ fontSize: 55 }} />,
+      color: "#9333ea", // purple
+    },
+    {
+      title: "Event & Webinar Pages",
+      description:
+        "Promote registrations, live streams, and engagement tracking for impactful event experiences.",
+      icon: <EventIcon sx={{ fontSize: 55 }} />,
+      color: "#f59e0b", // amber
+    },
+    {
+      title: "Interactive Landing Pages",
+      description:
+        "Modern interfaces with animations, forms, and storytelling to convert visitors into customers.",
+      icon: <TouchAppIcon sx={{ fontSize: 55 }} />,
+      color: "#10b981", // green
+    },
+  ];
 
   const navigate = useNavigate();
   return (
@@ -127,6 +162,129 @@ const Services = () => {
   </Box>
 </Box>
 
+
+{/* section 2 */}
+
+ <Box
+      sx={{
+        py: { xs: 8, sm: 10 },
+        px: 2,
+        background:
+          "linear-gradient(180deg, #f9fafb 0%, #eef2ff 50%, #f9fafb 100%)",
+      }}
+    >
+      {/* Label */}
+      <Typography
+        align="center"
+        sx={{
+          color: "#0ea5e9",
+          fontWeight: 700,
+          letterSpacing: 1,
+          mb: 2,
+          textTransform: "uppercase",
+          fontSize: { xs: "1rem", sm: "1.3rem" },
+        }}
+      >
+        Our Microsite Solutions
+      </Typography>
+
+      {/* Heading */}
+      <Typography
+        variant="h2"
+        align="center"
+        sx={{
+          color: "#0f172a",
+          fontWeight: 700,
+          fontSize: { xs: "1.9rem", sm: "3.2rem" },
+          mb: 3,
+        }}
+      >
+        We Build Microsites That Deliver Impact
+      </Typography>
+
+      {/* Description */}
+      <Typography
+        align="center"
+        sx={{
+          color: "#475569",
+          maxWidth: "850px",
+          mx: "auto",
+          mb: 8,
+          fontSize: { xs: "1rem", sm: "1.2rem" },
+          lineHeight: 1.7,
+        }}
+      >
+        We specialize in designing and developing performance-driven microsites
+        that combine creative storytelling with technical precision. Our process
+        ensures your campaign stands out with fast load times, responsive
+        layouts, and measurable analytics.
+      </Typography>
+
+      {/* Solution Highlights - Icon-based Grid */}
+      <Grid
+        container
+        spacing={6}
+        justifyContent="center"
+        alignItems="stretch"
+        sx={{ maxWidth: "1200px", mx: "auto" }}
+      >
+        {solutions.map((solution, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Stack
+              spacing={2.5}
+              alignItems="center"
+              justifyContent="center"
+              sx={{
+                textAlign: "center",
+                px: 2,
+                py: 4,
+                height: "100%",
+                borderRadius: "18px",
+                backgroundColor: "rgba(255,255,255,0.8)",
+                boxShadow: "0 4px 20px rgba(0,0,0,0.05)",
+                transition: "all 0.3s ease",
+                "&:hover": {
+                  transform: "translateY(-8px)",
+                 
+                  
+                },
+              }}
+            >
+              <Box
+                sx={{
+                  color: solution.color,
+                  transition: "all 0.3s ease",
+                  "&:hover": { transform: "scale(1.1)" },
+                }}
+              >
+                {solution.icon}
+              </Box>
+              <Typography
+                variant="h6"
+                sx={{
+                  fontWeight: 700,
+                  fontSize: { xs: "1.1rem", sm: "1.4rem" },
+                  color: "inherit",
+                }}
+              >
+                {solution.title}
+              </Typography>
+              <Typography
+                variant="body2"
+                sx={{
+                  color: "inherit",
+                  opacity: 0.9,
+                  fontSize: { xs: "0.95rem", sm: "1.1rem" },
+                  lineHeight: 1.6,
+                }}
+              >
+                {solution.description}
+              </Typography>
+            </Stack>
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
 
 
       {/* Services Section */}

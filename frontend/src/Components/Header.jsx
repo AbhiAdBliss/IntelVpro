@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom"; // ✅ added useLocation
 
 const navItems = [
   { label: "Home", path: "/" },
@@ -26,6 +26,7 @@ const navItems = [
 function ResponsiveHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation(); // ✅ detect current route
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -50,15 +51,18 @@ function ResponsiveHeader() {
               onClick={handleDrawerToggle}
               sx={{ textAlign: "center" }}
             >
-              <ListItemText primary={item.label} />
+              <ListItemText
+                primary={item.label}
+                sx={{
+                  color:
+                    location.pathname === item.path ? "red" : "#0A2540", // ✅ red active item
+                }}
+              />
             </ListItemButton>
           </ListItem>
         ))}
         <ListItem disablePadding>
-          <ListItemButton
-            onClick={handleGetStart}
-            sx={{ textAlign: "center" }}
-          >
+          <ListItemButton onClick={handleGetStart} sx={{ textAlign: "center" }}>
             <ListItemText primary="Get Start" />
           </ListItemButton>
         </ListItem>
@@ -69,13 +73,14 @@ function ResponsiveHeader() {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar
-        position="sticky"
+        position="fixed"
         sx={{
           background: "linear-gradient(90deg, #0A2540 0%, #00C6FF 100%)",
           color: "#fff",
           boxShadow: "none",
           width: "100%",
           py: 2,
+          zIndex: (theme) => theme.zIndex.appBar,
         }}
       >
         <Toolbar>
@@ -128,10 +133,10 @@ function ResponsiveHeader() {
                 component={Link}
                 to={item.path}
                 sx={{
-                  color: "#fff",
+                  color: location.pathname === item.path ? "#11c2f8ff " : "#fff", 
                   fontSize: "1.1rem",
                   mr: 4,
-                  "&:hover": { color: "#0A2540" },
+                  "&:hover": { color: " #5abeddff" }, 
                   cursor: "pointer",
                 }}
               >
@@ -143,8 +148,7 @@ function ResponsiveHeader() {
               disableRipple
               onClick={handleGetStart}
               sx={{
-                background:
-                  "linear-gradient(90deg, #367bbfff 0%, #4ac0e1ff 100%)",
+                background: "linear-gradient(90deg, #367bbfff 0%, #4ac0e1ff 100%)",
                 color: "#0A2540",
                 borderRadius: "25px",
                 px: 4,
@@ -153,8 +157,7 @@ function ResponsiveHeader() {
                 fontWeight: 600,
                 fontSize: "1.2rem",
                 "&:hover": {
-                  background:
-                    "linear-gradient(90deg, #6dc9e3ff 0%, #1f65aaff 100%)",
+                  background: "linear-gradient(90deg, #6dc9e3ff 0%, #1f65aaff 100%)",
                   color: "#0A2540",
                 },
                 cursor: "pointer",
@@ -166,6 +169,9 @@ function ResponsiveHeader() {
         </Toolbar>
       </AppBar>
 
+      {/* Spacer */}
+      <Toolbar />
+
       {/* Drawer for Mobile */}
       <nav>
         <Drawer
@@ -173,9 +179,7 @@ function ResponsiveHeader() {
           variant="temporary"
           open={mobileOpen}
           onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true,
-          }}
+          ModalProps={{ keepMounted: true }}
           sx={{
             display: { xs: "block", sm: "none" },
             "& .MuiDrawer-paper": { boxSizing: "border-box", width: 240 },
