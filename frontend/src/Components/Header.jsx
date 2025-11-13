@@ -26,7 +26,7 @@ const navItems = [
 function ResponsiveHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const navigate = useNavigate();
-  const location = useLocation(); // ✅ detect current route
+  const location = useLocation(); 
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -55,7 +55,7 @@ function ResponsiveHeader() {
                 primary={item.label}
                 sx={{
                   color:
-                    location.pathname === item.path ? "red" : "#0A2540", // ✅ red active item
+                    location.pathname === item.path ? "#11c2f8ff" : "#0A2540", 
                 }}
               />
             </ListItemButton>
@@ -122,7 +122,7 @@ function ResponsiveHeader() {
               cursor: "pointer",
             }}
           >
-            LOGO
+              Adbliss<span style={{ color: "#00E0FF" }}>.tech</span> 
           </Typography>
 
           {/* Desktop Navigation */}

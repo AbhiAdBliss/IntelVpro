@@ -22,6 +22,7 @@ import Footer from './Footer';
 import BrandLogo from "./BrandLogo";
 import { FaChevronRight } from 'react-icons/fa6'
 import { useNavigate } from "react-router-dom";
+import PerformanceStats from './PerformanceStats';
 
 
 
@@ -189,11 +190,11 @@ const Hero = () => {
       gutterBottom
       sx={{
         fontWeight: 'bold',
-        fontSize: { xs: 32, sm: 45, md:50, lg:55 },
+        fontSize: { xs: 32, sm: 45, md:50, lg:50 },
         lineHeight: 1.2,
       }}
     >
-      Empower Your Brand Growth
+      Experience Innovation. Power. Performance.
     </Typography>
 
     <Typography
@@ -202,11 +203,12 @@ const Hero = () => {
       gutterBottom
       sx={{
         mb: 4,
-        fontSize: { xs: 16, sm: 20, md: 25, lg: 30 },
+        fontSize: { xs: 16, sm: 20, md: 25, lg: 24 },
         px: { xs: 1, sm: 5, md: 10 },
       }}
     >
-      Reach millions, drive conversions, and grow your business with our expert ad strategies.
+     Discover how cutting-edge technology transforms everyday business efficiency
+Built to perform, designed to empower — welcome to a new era of digital excellence.
     </Typography>
 
     <Button
@@ -281,7 +283,7 @@ const Hero = () => {
                 sx={{
                   fontWeight: 700,
                   mb: 1,
-                  color: "#7B3FF2",
+                  color: "#3f95f2ff",
                   fontSize: { xs: "1.8rem", sm: "2.4rem", md: "3.5rem" },
                 }}
               >
@@ -393,6 +395,9 @@ const Hero = () => {
       </Box>
 
 <BrandLogo/>
+
+
+
      
 
       {/* Section 3 */}
@@ -641,6 +646,7 @@ const Hero = () => {
 
 
 
+
   {/* section 3 container 3 */}
 
  <Box
@@ -740,7 +746,7 @@ const Hero = () => {
   >
     <Box
       component="video"
-      src="/src/assets/GEMINI Cooking OIL.mp4"
+      src="/GEMINI Cooking OIL.mp4"
       autoPlay
       muted
       loop
@@ -755,6 +761,8 @@ const Hero = () => {
     />
   </Box>
 </Box>
+
+
 
 
  {/* section 3 container 4 */}
@@ -838,6 +846,10 @@ const Hero = () => {
   
 
 </Box> 
+
+
+{/* Full Page Iframe */}
+
 
 {/* section 4  */}
 
@@ -982,6 +994,9 @@ const Hero = () => {
     
 </Box>
 
+{/* section  */}
+
+<PerformanceStats/>
 
 {/* section last */}
  <Box
@@ -990,7 +1005,7 @@ const Hero = () => {
           py: { xs: 10, sm: 8 },
           background: 'linear-gradient(135deg, #5aa0b8ff, #4182d6ff)',
           color: 'white',
-          mt:2
+          pt:2
         }}
       >
         <Container maxWidth="lg">
@@ -1069,6 +1084,9 @@ const Hero = () => {
           </Box>
         </Container>
       </Box>
+
+
+
 
 <Footer/>
 
