@@ -9,31 +9,55 @@ import Services from "./Services/Services";
 import Microsites from "./Microsites/Microsites";
 
 import VivoX50 from "./richmedia/VivoX50";
+import Canon from "./richmedia/Canon";
+import Bajajfinance from "./richmedia/Bajajfinance";
+import Icici from "./richmedia/Icici";
+import Myntra from "./richmedia/Myntra";
+import WhatsApp from "./richmedia/WhatsApp";
+import Triumph from "./richmedia/Triumph";
+import Tvs from "./richmedia/Tvs";
 
 // Wrapper component to control header visibility
 function AppContent() {
   const location = useLocation();
 
-  // Hide Header only on this route
-  const hideHeader = location.pathname === "/richmedia/VivoX50";
+  // All richmedia pages where header must be hidden
+  const hideHeaderRoutes = [
+    "/richmedia/VivoX50",
+    "/richmedia/Canon",
+    "/richmedia/Bajajfinance",
+    "/richmedia/Icici",
+    "/richmedia/Myntra",
+    "/richmedia/WhatsApp",
+    "/richmedia/Triumph",
+    "/richmedia/Tvs",
+  ];
+
+  // Check if route requires hiding header
+  const hideHeader = hideHeaderRoutes.includes(location.pathname);
 
   return (
     <>
-      {/* Show header on all pages except richmedia */}
+      {/* Show header only if not inside richmedia pages */}
       {!hideHeader && <Header />}
 
       <Routes>
+        {/* Main pages */}
         <Route path="/" element={<Home />} />
         <Route path="/microsites" element={<Microsites />} />
         <Route path="/register" element={<Register />} />
         <Route path="/about" element={<About />} />
         <Route path="/services" element={<Services />} />
 
-        {/* Fullscreen video page (no header) */}
-        <Route
-          path="/richmedia/VivoX50"
-          element={<VivoX50 />}
-        />
+        {/* Richmedia full-screen pages (no header) */}
+        <Route path="/richmedia/VivoX50" element={<VivoX50 />} />
+        <Route path="/richmedia/Canon" element={<Canon />} />
+        <Route path="/richmedia/Bajajfinance" element={<Bajajfinance />} />
+        <Route path="/richmedia/Icici" element={<Icici />} />
+        <Route path="/richmedia/Myntra" element={<Myntra />} />
+        <Route path="/richmedia/WhatsApp" element={<WhatsApp />} />
+        <Route path="/richmedia/Triumph" element={<Triumph />} />
+        <Route path="/richmedia/Tvs" element={<Tvs />} />
       </Routes>
     </>
   );
