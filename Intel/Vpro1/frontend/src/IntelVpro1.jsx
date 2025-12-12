@@ -27,12 +27,15 @@ const IntelVpro1 = () => {
     consent: false,
   });
 
+  // SUCCESS MESSAGE STATE
+  const [showSuccess, setShowSuccess] = useState(false);
+
   // Handle input change
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Handle checkbox
+  // Handle checkbox change
   const handleCheck = (e) => {
     setForm({ ...form, [e.target.name]: e.target.checked });
   };
@@ -42,13 +45,26 @@ const IntelVpro1 = () => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
-        "http://localhost:5001/api/intel-vpro-form",
-        form
-      );
+      await axios.post("https://adbliss.tech/api/intel-vpro-form", form);
 
-      alert("Form submitted successfully!");
-      console.log("Success:", res.data);
+      // SHOW SUCCESS BOX
+      setShowSuccess(true);
+
+      // RESET FORM
+      setForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        company: "",
+        industry: "",
+        jobLevel: "",
+        jobTitle: "",
+        city: "",
+        ageConfirmed: false,
+        consent: false,
+      });
+
     } catch (error) {
       console.error(error);
       alert("Error submitting form");
@@ -57,6 +73,7 @@ const IntelVpro1 = () => {
 
   return (
     <Box sx={{ width: "100%", backgroundColor: "#fff" }}>
+
       {/* ---------------------------- BANNER ---------------------------- */}
       <Box
         sx={{
@@ -93,6 +110,7 @@ const IntelVpro1 = () => {
             <Typography variant="h4" fontWeight={400} mb={1}>
               Redefine what’s possible for your business
             </Typography>
+
             <Typography variant="body1" mb={3} lineHeight={1.6}>
               Give your people the tools to solve everyday challenges and meet
               future demands with business PCs powered by Intel® Core™ Ultra
@@ -102,6 +120,7 @@ const IntelVpro1 = () => {
             <Typography variant="h4" fontWeight={400} mb={1}>
               Win the day with business PCs that mean business
             </Typography>
+
             <Typography variant="body1" mb={3} lineHeight={1.6}>
               See how choosing today’s standard for business PCs—Intel® Core™
               Ultra 200V series processors—helps you create a more productive
@@ -143,6 +162,62 @@ const IntelVpro1 = () => {
             onSubmit={handleSubmit}
             sx={{ flex: 1, display: "flex", flexDirection: "column" }}
           >
+
+            {/* ⭐ SUCCESS MESSAGE BOX ⭐ */}
+            {showSuccess && (
+              <Box
+                sx={{
+                  backgroundColor: "#d9ede4",
+                  borderRadius: "10px",
+                  padding: "25px",
+                  marginBottom: "25px",
+                  position: "relative",
+                }}
+              >
+                {/* Close icon */}
+                <Typography
+                  onClick={() => setShowSuccess(false)}
+                  sx={{
+                    position: "absolute",
+                    right: 20,
+                    top: 15,
+                    cursor: "pointer",
+                    fontSize: "26px",
+                    fontWeight: "600",
+                  }}
+                >
+                  ×
+                </Typography>
+
+                <Typography
+                  sx={{
+                    fontWeight: "700",
+                    fontSize: "20px",
+                    color: "#133b2d",
+                    marginBottom: "6px",
+                  }}
+                >
+                  We have received your request. We will get in touch with you ASAP.
+                </Typography>
+
+                <Typography sx={{ color: "#133b2d", fontSize: "17px" }}>
+                  Download the white paper from{" "}
+                  <a
+                    href={import.meta.env.BASE_URL + "ebook.pdf"}
+                    download
+                    style={{
+                      color: "#0078ff",
+                      textDecoration: "underline",
+                      fontWeight: "500",
+                    }}
+                  >
+                    here
+                  </a>
+                  .
+                </Typography>
+              </Box>
+            )}
+
             <Typography variant="body1" sx={{ mb: 2 }}>
               Fill out the form below to download the exclusive whitepaper.
             </Typography>
@@ -196,6 +271,10 @@ const IntelVpro1 = () => {
             {/* CHECKBOXES */}
             <Box>
               <FormControlLabel
+                required
+                sx={{
+                  "& .MuiFormControlLabel-asterisk": { display: "none" },
+                }}
                 control={
                   <Checkbox
                     name="ageConfirmed"
@@ -206,13 +285,18 @@ const IntelVpro1 = () => {
                 }
                 label={
                   <Typography fontSize="15px">
-                    By completing this form, you confirm you are 18 years or
-                    older.
+                    By completing this form, you are confirming you are age 18
+                    years or older.
                   </Typography>
                 }
               />
 
               <FormControlLabel
+                required
+                sx={{
+                  alignItems: "flex-start",
+                  "& .MuiFormControlLabel-asterisk": { display: "none" },
+                }}
                 control={
                   <Checkbox
                     name="consent"
@@ -222,16 +306,83 @@ const IntelVpro1 = () => {
                   />
                 }
                 label={
-                  <Typography fontSize="15px">
-                    By downloading the whitepaper, you agree to Intel® and
-                    BusinessTech contacting you.
+                  <Typography fontSize="15px" lineHeight="22px">
+                    By downloading the whitepaper, you agree to Intel and
+                    Adbliss.tech contacting you further for marketing-related
+                    communications. To learn about their practices, visit{" "}
+                    <a
+                      href="https://adbliss.tech/privacy"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#1976d2",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      Adbliss Privacy Notice
+                    </a>{" "}
+                    and Intel’s{" "}
+                    <a
+                      href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: "#1976d2",
+                        textDecoration: "underline",
+                      }}
+                    >
+                      Privacy and Cookies
+                    </a>{" "}
+                    notices.
                   </Typography>
                 }
               />
             </Box>
+
           </Box>
         </Box>
       </Container>
+
+      {/* FOOTER */}
+      <Box
+        sx={{
+          width: "100%",
+          backgroundColor: "#e6e6e6",
+          padding: "30px 0",
+          mt: 4,
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: "1400px",
+            margin: "0 auto",
+            padding: "0 20px",
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: "16px",
+              color: "#000",
+              lineHeight: 1.6,
+              mb: 3,
+            }}
+          >
+            © Intel® Corporation. Intel®, the Intel® logo, and other Intel®
+            marks are trademarks of Intel® Corporation or its subsidiaries.
+          </Typography>
+
+          <Typography
+            sx={{
+              fontSize: "16px",
+              color: "#000",
+              lineHeight: 1.6,
+            }}
+          >
+            © 2025 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
+          </Typography>
+        </Box>
+      </Box>
+
     </Box>
   );
 };

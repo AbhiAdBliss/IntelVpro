@@ -66,6 +66,8 @@ app.post("/api/intel-vpro-form", async (req, res) => {
 });
 
 // -------------------- START SERVER --------------------
-app.listen(process.env.PORT, () =>
-  console.log(`Backend running at http://localhost:${process.env.PORT}`)
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, "0.0.0.0", () =>
+  console.log(`Backend running at http://0.0.0.0:${PORT}`)
 );
+

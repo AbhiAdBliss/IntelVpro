@@ -227,76 +227,131 @@ const Dco = () => {
               </Button>
 
               {/* CHECKBOXES */}
-              <Box>
-                {/* Checkbox 1 */}
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="ageConfirmed"
-                      checked={form.ageConfirmed}
-                      onChange={handleCheck}
-                      required
-                    />
-                  }
-                  label={
-                    <Typography fontSize="15px">
-                      By completing this form, you are confirming you are age 18
-                      years or older.
-                    </Typography>
-                  }
-                />
+             <Box>
+  {/* Checkbox 1 */}
+  <FormControlLabel
+    required
+    sx={{
+      "& .MuiFormControlLabel-asterisk": {
+        display: "none", // Hide the star
+      },
+    }}
+    control={
+      <Checkbox
+        name="ageConfirmed"
+        checked={form.ageConfirmed}
+        onChange={handleCheck}
+        required
+      />
+    }
+    label={
+      <Typography fontSize="15px">
+        By completing this form, you are confirming you are age 18 years or
+        older.
+      </Typography>
+    }
+  />
 
-                {/* Checkbox 2 */}
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      name="consent"
-                      checked={form.consent}
-                      onChange={handleCheck}
-                      required
-                    />
-                  }
-                  sx={{ alignItems: "flex-start" }}
-                  label={
-                    <Typography fontSize="15px" lineHeight="22px">
-                      By downloading the whitepaper, you agree to Intel and
-                      Adbliss.tech contacting you further for marketing-related
-                      communications. To learn about Adbliss.tech practices, you
-                      can visit{" "}
-                      <a
-                        href="https://adbliss.tech/privacy"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          color: "#1976d2",
-                          textDecoration: "underline",
-                        }}
-                      >
-                        Adbliss Privacy notice
-                      </a>
-                      . To learn about Intel's practices, including how to manage
-                      your preferences and settings, you can visit Intel's{" "}
-                      <a
-                        href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        style={{
-                          color: "#1976d2",
-                          textDecoration: "underline",
-                        }}
-                      >
-                        Privacy and Cookies
-                      </a>{" "}
-                      notices.
-                    </Typography>
-                  }
-                />
-              </Box>
+  {/* Checkbox 2 */}
+  <FormControlLabel
+    required
+    sx={{
+      alignItems: "flex-start",
+      "& .MuiFormControlLabel-asterisk": {
+        display: "none", // Hide the star
+      },
+    }}
+    control={
+      <Checkbox
+        name="consent"
+        checked={form.consent}
+        onChange={handleCheck}
+        required
+      />
+    }
+    label={
+      <Typography fontSize="15px" lineHeight="22px">
+        By downloading the whitepaper, you agree to Intel and Adbliss.tech
+        contacting you further for marketing-related communications. To learn
+        about Adbliss.tech practices, you can visit{" "}
+        <a
+          href="https://adbliss.tech/privacy"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "#1976d2",
+            textDecoration: "underline",
+          }}
+        >
+          Adbliss Privacy notice
+        </a>
+        . To learn about Intel's practices, including how to manage your
+        preferences and settings, you can visit Intel's{" "}
+        <a
+          href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            color: "#1976d2",
+            textDecoration: "underline",
+          }}
+        >
+          Privacy and Cookies
+        </a>{" "}
+        notices.
+      </Typography>
+    }
+  />
+</Box>
+
             </Box>
 
           </Box>
         </Box>
       </Container>
+
+
+{/* Footer */}
+              <Box
+            sx={{
+              width: "100%",
+              backgroundColor: "#e6e6e6",
+              padding: "30px 0",
+              mt: 4,
+            }}
+          >
+            <Box
+              sx={{
+                maxWidth: "1200px",
+                margin: "0 auto",
+                padding: "0 10px",
+              }}
+            >
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  color: "#000",
+                  lineHeight: 1.6,
+                  mb: 3,
+                }}
+              >
+                © Intel<sup>®</sup> Corporation. Intel<sup>®</sup>, the Intel<sup>®</sup> 
+                logo, and other Intel<sup>®</sup> marks are trademarks of Intel<sup>®</sup> 
+                Corporation or its subsidiaries. Other names and brands may be claimed as 
+                the property of others.
+              </Typography>
+      
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  color: "#000",
+                  lineHeight: 1.6,
+                }}
+              >
+                © 2025 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
+              </Typography>
+            </Box>
+          </Box>
     </Box>
   );
 };
