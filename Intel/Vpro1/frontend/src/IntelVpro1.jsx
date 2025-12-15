@@ -147,7 +147,7 @@ const IntelVpro1 = () => {
               <Typography fontSize={16} color="#133b2d" mt={1}>
                 Download the white paper from{" "}
                 <a
-                  href="/Today’s Standard for the business PCs.pdf"
+                  href="/todays-standard-for-business-pcs.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
                   style={{
