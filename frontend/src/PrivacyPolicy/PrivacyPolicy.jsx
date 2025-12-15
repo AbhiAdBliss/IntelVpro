@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Container, Typography } from "@mui/material";
-import BannerImg from "../assets/PPbannerImg.png";
+import BannerImg from "../assets/PPbanner.png";
 
 
 const PrivacyPolicy = () => {
