@@ -183,15 +183,19 @@ const Dco = () => {
 <Typography mb={3} lineHeight={1.6} textAlign="justify">
 Learn how Intel® Xeon® 6 processors can help optimize your data centers for AI.
 </Typography>
-<Box mt={3}>
+
+<Box mt={3} display="flex" justifyContent="center">
   <Box
     component="img"
     src={lastimg}
     alt="Intel Xeon AI Data Center"
     sx={{
-      width: "90%",
-      maxWidth: "520px",
-      height: "450px",
+      width: { xs: "100%", sm: "90%", md: "520px" },
+      maxHeight: { xs: 220, sm: 320, md: 450 },
+      height: { xs: 220, sm: 320, md: 450 },
+      objectFit: "cover",   
+      borderRadius: "10px",
+      display: "block",
     }}
   />
 </Box>
@@ -293,6 +297,7 @@ Learn how Intel® Xeon® 6 processors can help optimize your data centers for AI
                       </a>{" "}
                       and{" "}
                       <a
+             
                         href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html"
                         target="_blank"
                         rel="noopener noreferrer"
