@@ -15,7 +15,7 @@ import icon1 from "./assets/icon1.png";
 import icon2 from "./assets/icon2.png";
 import icon3 from "./assets/icon3.png";
 import icon4 from "./assets/icon4.png";
-import IntelLogo from "./assets/intel-boxed-logo.png";
+import IntelLogo from "./assets/intel-boxed-logo.svg";
 
 const IntelVpro1 = () => {
   const [form, setForm] = useState({
