@@ -1,40 +1,23 @@
+import React from "react";
 import { Box, Typography } from "@mui/material";
 import { keyframes } from "@mui/system";
-import socialImg from "../assets/collaboration-social.jpg";
-import logoLockup from "../assets/lenovoxfifa.png";
 
-/* ✅ Professional Animations */
-const fadeSlideUp = keyframes`
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
+import Lenovoxfifa from "../assets/LonovoXFifa.png";
+import LenovoFifaStrip from "../assets/LenovoXFifa-2.png";
+import IntelCore from "../assets/LenovoXFifa-3.png";
+import IntelVpro from "../assets/LenovoXFifa-4.png";
+
+/* ✅ Smooth Left -> Right Animation (Text) */
+const slideFromLeft = keyframes`
+  0% { opacity: 0; transform: translate(-60px, -50%); }
+  100% { opacity: 1; transform: translate(0px, -50%); }
 `;
 
-const fadeSlideRight = keyframes`
-  0% { opacity: 0; transform: translateX(-40px); }
-  100% { opacity: 1; transform: translateX(0); }
+/* ✅ Smooth Fade Up (Logos) */
+const fadeUp = keyframes`
+  0% { opacity: 0; transform: translateY(22px); }
+  100% { opacity: 1; transform: translateY(0px); }
 `;
-
-const fadeSlideLeft = keyframes`
-  0% { opacity: 0; transform: translateX(40px); }
-  100% { opacity: 1; transform: translateX(0); }
-`;
-
-const zoomIn = keyframes`
-  0% { transform: scale(1.07); }
-  100% { transform: scale(1); }
-`;
-
-const floatSoft = keyframes`
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-8px); }
-`;
-
-const scaleHover = {
-  transition: "transform 0.4s ease",
-  "&:hover": {
-    transform: "scale(1.03)",
-  },
-};
 
 const LenovoXFifa = () => {
   return (
@@ -42,145 +25,138 @@ const LenovoXFifa = () => {
       sx={{
         width: "100%",
         minHeight: "100vh",
-        background: "linear-gradient(180deg, #f4f2f2 0%, #ffffff 100%)",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        background: "#fff",
+        p: { xs: 1, sm: 2 }, // ✅ responsive padding
       }}
     >
       <Box
         sx={{
-          width: "100%",
+          width: { xs: "95%", sm: "90%", md: "80%" }, // ✅ responsive width
           maxWidth: 1300,
-          background: "#fff",
-          borderRadius: 3,
+          position: "relative",
+          borderRadius: { xs: 1, md: 1 },
           overflow: "hidden",
-          boxShadow: "0 12px 40px rgba(0,0,0,0.12)",
-          animation: `${fadeSlideUp} 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards`,
         }}
       >
-        {/* ✅ SOCIAL IMAGE with cinematic zoom */}
+        {/* MAIN IMAGE */}
         <Box
+          component="img"
+          src={Lenovoxfifa}
+          alt="Social Banner"
           sx={{
+            width: "100%",
+            height: "auto",
             display: "block",
-            overflow: "hidden",
-            position: "relative",
+            objectFit: "cover",
+          }}
+        />
+
+        {/* TEXT */}
+        <Typography
+          sx={{
+            position: "absolute",
+            left: { xs: "5%", md: "6%" },
+            top: { xs: "32%", sm: "33%", md: "35%" }, // ✅ responsive top position
+            color: "#fff",
+            fontWeight: 900,
+            fontSize: { xs: "20px", sm: "34px", md: "85px" }, // ✅ responsive font
+            lineHeight: { xs: 1.1, md: 1.05 },
+            maxWidth: { xs: "85%", sm: "75%", md: "55%" }, // ✅ responsive width
+            textShadow: "0px 4px 14px rgba(0,0,0,0.35)",
+            opacity: 0,
+            transform: "translate(-60px, -50%)",
+            animation: `${slideFromLeft} 1.2s ease-out forwards`,
           }}
         >
-          <Box
-            component="img"
-            src={socialImg}
-            alt="Collaboration’s gone football"
-            sx={{
-              width: "100%",
-              height: "auto",
-              maxHeight: { md: 520 },
-              objectFit: "contain",
-              backgroundColor: "#ffffff",
-              display: "block",
-              animation: `${zoomIn} 1.2s ease-out forwards`, // ✅ zoom in
-              transition: "transform 0.6s ease",
-              "&:hover": {
-                transform: "scale(1.02)", // ✅ hover zoom
-              },
-            }}
-          />
+          Collaboration’s <br />
+          gone football.
+        </Typography>
 
-          {/* ✅ subtle gradient overlay for premium look */}
-          <Box
-            sx={{
-              position: "absolute",
-              inset: 0,
-              background:
-                "linear-gradient(180deg, rgba(0,0,0,0.0) 40%, rgba(0,0,0,0.08) 100%)",
-              pointerEvents: "none",
-            }}
-          />
-        </Box>
-
-        {/* CONTENT SECTION */}
+        {/* ✅ BOTTOM LEFT: Powered by + Intel Core + Intel vPro */}
         <Box
           sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", md: "2fr 1fr" },
-            gap: 4,
-            p: { xs: 3, md: 5 },
+            position: "absolute",
+            left: { xs: "3%", md: "4%" },
+            bottom: { xs: "3%", md: "5%" },
+            opacity: 0,
+            animation: `${fadeUp} 1s ease forwards`,
+            animationDelay: "0.5s",
           }}
         >
-          {/* ✅ TEXT with stagger animation */}
-          <Box>
-            <Typography
-              variant="h4"
-              sx={{
-                fontWeight: 900,
-                mb: 2,
-                letterSpacing: "-0.5px",
-                animation: `${fadeSlideRight} 0.9s ease forwards`,
-              }}
-            >
-              Collaboration’s Gone Football
-            </Typography>
+          {/* Powered by */}
+          <Typography
+            sx={{
+              color: "#fff",
+              fontSize: { xs: "10px", sm: "12px", md: "16px" }, // ✅ responsive text
+              fontWeight: 500,
+              mb: { xs: 0.6, md: 1 },
+              textShadow: "0px 3px 10px rgba(0,0,0,0.35)",
+            }}
+          >
+            Powered by
+          </Typography>
 
-            <Typography
-              sx={{
-                fontSize: 16,
-                lineHeight: 1.7,
-                mb: 2,
-                opacity: 0,
-                animation: `${fadeSlideUp} 0.9s ease forwards`,
-                animationDelay: "0.2s",
-              }}
-            >
-              Lenovo brings the spirit of football into the workplace — enabling
-              teams to collaborate seamlessly, just like the beautiful game.
-            </Typography>
-
-            <Typography
-              sx={{
-                fontSize: 16,
-                lineHeight: 1.7,
-                opacity: 0,
-                animation: `${fadeSlideUp} 0.9s ease forwards`,
-                animationDelay: "0.35s",
-              }}
-            >
-              Powered by AI-driven Digital Workplace Solutions, Lenovo ensures
-              uninterrupted collaboration and performance as the Official
-              Technology Partner of FIFA.
-            </Typography>
-          </Box>
-
-          {/* ✅ LOGO LOCKUP with float animation */}
+          {/* Intel Row */}
           <Box
             sx={{
               display: "flex",
-              flexDirection: "column",
-              justifyContent: "flex-end",
-              alignItems: "flex-start",
+              alignItems: "center",
+              gap: { xs: 1, sm: 1.5, md: 2 }, // ✅ responsive gap
+              flexWrap: "wrap", // ✅ prevents overflow on small screens
             }}
           >
+            {/* Intel Core */}
             <Box
+              component="img"
+              src={IntelCore}
+              alt="Intel Core Ultra 7"
               sx={{
-                display: "inline-block",
-                ...scaleHover,
-                opacity: 0,
-                animation: `${fadeSlideLeft} 0.9s ease forwards`,
-                animationDelay: "0.25s",
+                width: { xs: "55px", sm: "70px", md: "95px" }, // ✅ responsive image
+                height: "auto",
+                display: "block",
+                borderRadius: 1,
+                filter: "drop-shadow(0px 6px 18px rgba(0,0,0,0.35))",
               }}
-            >
-              <Box
-                component="img"
-                src={logoLockup}
-                alt="Lenovo FIFA Logo Lockup"
-                sx={{
-                  width: "100%",
-                  maxWidth: 260,
-                  animation: `${floatSoft} 3.5s ease-in-out infinite`, // ✅ floating
-                }}
-              />
-            </Box>
+            />
+
+            {/* ✅ Intel vPro image */}
+            <Box
+              component="img"
+              src={IntelVpro}
+              alt="Intel vPro"
+              sx={{
+                width: { xs: "55px", sm: "70px", md: "80px" }, // ✅ responsive image
+                height: "auto",
+                display: "block",
+                filter: "drop-shadow(0px 6px 18px rgba(0,0,0,0.35))",
+              }}
+            />
           </Box>
         </Box>
+
+        {/* ✅ BOTTOM RIGHT: Lenovo FIFA Strip */}
+        <Box
+          component="img"
+          src={LenovoFifaStrip}
+          alt="Lenovo FIFA Strip"
+          sx={{
+            position: "absolute",
+            right: { xs: "2.5%", md: "4%" },
+            bottom: { xs: "3%", md: "5%" },
+
+            width: { xs: "140px", sm: "220px", md: "420px" }, // ✅ responsive width
+            height: "auto",
+            display: "block",
+
+            opacity: 0,
+            animation: `${fadeUp} 1s ease forwards`,
+            animationDelay: "0.5s",
+            filter: "drop-shadow(0px 6px 18px rgba(0,0,0,0.35))",
+          }}
+        />
       </Box>
     </Box>
   );
