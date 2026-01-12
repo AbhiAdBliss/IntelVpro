@@ -18,32 +18,21 @@ import Triumph from "./richmedia/Triumph";
 import Tvs from "./richmedia/Tvs";
 // import Vpro from "./Intel/Vpro";
 import PrivacyPolicy from "./PrivacyPolicy/PrivacyPolicy.jsx";
-
+import LenovoXFifa from "./richmedia/LenovoXFifa.jsx";
 
 // Wrapper component to control header visibility
 function AppContent() {
   const location = useLocation();
 
-  // All richmedia pages where header must be hidden
-  const hideHeaderRoutes = [
-    "/richmedia/VivoX50",
-    "/richmedia/Canon",
-    "/richmedia/Bajajfinance",
-    "/richmedia/Icici",
-    "/richmedia/Myntra",
-    "/richmedia/WhatsApp",
-    "/richmedia/Triumph",
-    "/richmedia/Tvs",
-    "/Intel/Vpro",
-    "/privacy-policy"
-  ];
-
-  // Check if route requires hiding header
-  const hideHeader = hideHeaderRoutes.includes(location.pathname);
+  // ✅ BEST FIX: hide header for all richmedia pages automatically
+  const hideHeader =
+    location.pathname.startsWith("/richmedia") ||
+    location.pathname.startsWith("/Intel") ||
+    location.pathname === "/privacy-policy";
 
   return (
     <>
-      {/* Show header only if not inside richmedia pages */}
+      {/* ✅ Show header only if not inside richmedia/intel/privacy pages */}
       {!hideHeader && <Header />}
 
       <Routes>
@@ -63,19 +52,13 @@ function AppContent() {
         <Route path="/richmedia/WhatsApp" element={<WhatsApp />} />
         <Route path="/richmedia/Triumph" element={<Triumph />} />
         <Route path="/richmedia/Tvs" element={<Tvs />} />
+        <Route path="/richmedia/lenovoxfifa" element={<LenovoXFifa />} />
 
+        {/* Intel Vpro */}
+        {/* <Route path="/Intel/Vpro" element={<Vpro />} /> */}
 
-
-        {/* Intel Vpro  ADDED HERE */}
-        {/* <Route path="/Intel/Vpro" element={<Vpro/>} /> */}
-
-
-        {/* == PrivacyPolicy page */}
-       <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-
-
-
-
+        {/* Privacy Policy */}
+        <Route path="/privacy-policy" element={<PrivacyPolicy />} />
       </Routes>
     </>
   );
