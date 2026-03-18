@@ -29,12 +29,12 @@ const LenovoXFifa = () => {
         justifyContent: "center",
         alignItems: "center",
         background: "#fff",
-        p: { xs: 1, sm: 2 }, // ✅ responsive padding
+        p: { xs: 1, sm: 2 }, 
       }}
     >
       <Box
         sx={{
-          width: { xs: "95%", sm: "90%", md: "80%" }, // ✅ responsive width
+          width: { xs: "95%", sm: "90%", md: "80%" }, 
           maxWidth: 1300,
           position: "relative",
           borderRadius: { xs: 1, md: 1 },
@@ -59,12 +59,12 @@ const LenovoXFifa = () => {
           sx={{
             position: "absolute",
             left: { xs: "5%", md: "6%" },
-            top: { xs: "32%", sm: "33%", md: "35%" }, // ✅ responsive top position
+            top: { xs: "32%", sm: "33%", md: "35%" }, 
             color: "#fff",
             fontWeight: 900,
-            fontSize: { xs: "20px", sm: "34px", md: "85px" }, // ✅ responsive font
+            fontSize: { xs: "20px", sm: "34px", md: "85px" }, 
             lineHeight: { xs: 1.1, md: 1.05 },
-            maxWidth: { xs: "85%", sm: "75%", md: "55%" }, // ✅ responsive width
+            maxWidth: { xs: "85%", sm: "75%", md: "55%" }, 
             textShadow: "0px 4px 14px rgba(0,0,0,0.35)",
             opacity: 0,
             transform: "translate(-60px, -50%)",
@@ -90,7 +90,7 @@ const LenovoXFifa = () => {
           <Typography
             sx={{
               color: "#fff",
-              fontSize: { xs: "10px", sm: "12px", md: "16px" }, // ✅ responsive text
+              fontSize: { xs: "10px", sm: "12px", md: "16px" }, 
               fontWeight: 500,
               mb: { xs: 0.6, md: 1 },
               textShadow: "0px 3px 10px rgba(0,0,0,0.35)",
@@ -104,8 +104,8 @@ const LenovoXFifa = () => {
             sx={{
               display: "flex",
               alignItems: "center",
-              gap: { xs: 1, sm: 1.5, md: 2 }, // ✅ responsive gap
-              flexWrap: "wrap", // ✅ prevents overflow on small screens
+              gap: { xs: 1, sm: 1.5, md: 2 },
+              flexWrap: "wrap", 
             }}
           >
             {/* Intel Core */}
@@ -114,7 +114,7 @@ const LenovoXFifa = () => {
               src={IntelCore}
               alt="Intel Core Ultra 7"
               sx={{
-                width: { xs: "55px", sm: "70px", md: "95px" }, // ✅ responsive image
+                width: { xs: "55px", sm: "70px", md: "95px" },
                 height: "auto",
                 display: "block",
                 borderRadius: 1,
@@ -128,7 +128,7 @@ const LenovoXFifa = () => {
               src={IntelVpro}
               alt="Intel vPro"
               sx={{
-                width: { xs: "55px", sm: "70px", md: "80px" }, // ✅ responsive image
+                width: { xs: "55px", sm: "70px", md: "80px" }, 
                 height: "auto",
                 display: "block",
                 filter: "drop-shadow(0px 6px 18px rgba(0,0,0,0.35))",
@@ -147,7 +147,7 @@ const LenovoXFifa = () => {
             right: { xs: "2.5%", md: "4%" },
             bottom: { xs: "3%", md: "5%" },
 
-            width: { xs: "140px", sm: "220px", md: "420px" }, // ✅ responsive width
+            width: { xs: "140px", sm: "220px", md: "420px" }, 
             height: "auto",
             display: "block",
 
