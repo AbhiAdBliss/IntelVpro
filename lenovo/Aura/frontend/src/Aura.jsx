@@ -34,6 +34,11 @@ const Aura = () => {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
+   const API =
+    window.location.hostname === "localhost"
+      ? "http://localhost:5001"
+      : "https://adbliss.tech";
+
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
     // Clear error when user starts typing
@@ -68,7 +73,7 @@ const Aura = () => {
   try {
     setLoading(true); // ✅ start loading
 
-    await axios.post("https://adbliss.tech/dco-api/lenovo-aura-form", form);
+     await axios.post(`${API}/dco-api/lenovo-aura-form`, form);
 
     setShowSuccess(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
