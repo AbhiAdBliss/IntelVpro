@@ -9,9 +9,9 @@ import {
   Container,
 } from "@mui/material";
 import axios from "axios";
-import Aura1 from "../src/assets/Aura-1.png";
-import Auraicon1 from "../src/assets/Aura-icon-1.png";
-import Auraicon2 from "../src/assets/Aura-icon-2.png";
+import Ssg1 from "../src/assets/Ssg.png";
+import logo from "../src/assets/lenovo-logo.png";
+
 
 import LaptopIcon from "@mui/icons-material/LaptopMac";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -37,9 +37,9 @@ const Ssg = () => {
   const [loading, setLoading] = useState(false);
 
   const API =
-    window.location.hostname === "localhost"
-      ? "http://localhost:5004"
-      : "https://adbliss.tech";
+  window.location.hostname === "localhost"
+    ? "http://localhost:5005"  
+    : "https://adbliss.tech";
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -76,10 +76,15 @@ const Ssg = () => {
     try {
       setLoading(true);
 
- const response = await axios.post(
-  `${API}/lenovo-api/lenovo-ssg-form`,
+const response = await axios.post(
+  `${API}/ssg-api/lenovo-api/lenovo-ssg-form`,
   form,
-  { responseType: "blob" }
+  {
+    headers: {
+      "Content-Type": "application/json",
+    },
+    responseType: "blob",
+  }
 );
 
 const blob = new Blob([response.data], { type: "application/pdf" });
@@ -136,52 +141,40 @@ link.remove();
   return (
     <Box sx={{ width: "100%", backgroundColor: "#fff" }}>
       {/* ================= BANNER ================= */}
-      <Box sx={{ width: "100%", mt: { xs: 2, md: 4 } }}>
-        <Box sx={{ position: "relative", width: "100%" }}>
-          {/* MAIN IMAGE */}
-          <Box
-            component="img"
-            src={Aura1}
-            alt="Intel Xeon AI Data Center"
-            sx={{
-              width: "100%",
-              height: { xs: 200, sm: 320, md: 450, lg: 550 },
-              objectFit: "cover",
-              display: "block",
-            }}
-          />
+     <Box sx={{ width: "100%", mt: { xs: 2, md: 4 } }}>
+  <Box sx={{ position: "relative", width: "100%" }}>
+    
+    {/* MAIN IMAGE */}
+    <Box
+      component="img"
+      src={Ssg1}
+      alt="Lenovo SSG Banner"
+      sx={{
+        width: "100%",
+        height: { xs: 200, sm: 320, md: 450, lg: 600 },
+        objectFit: "cover",
+        display: "block",
+      }}
+    />
 
-          {/* LEFT LOGO (LENOVO) */}
-          <Box
-            component="img"
-            src={Auraicon2}
-            alt="Lenovo Aura"
-            sx={{
-              position: "absolute",
-              top: { xs: 8, sm: 12, md: 20 },
-              left: { xs: 8, sm: 14, md: 30 },
-              width: { xs: 80, sm: 120, md: 155, lg: 180 },
-              padding: "6px",
-              borderRadius: "6px",
-            }}
-          />
+    {/* 🔥 LEFT TOP LOGO */}
+   <Box
+  component="img"
+  src={logo}   // ✅ correct way
+  alt="Lenovo Tech Today"
+  sx={{
+    position: "absolute",
+    top: { xs: 10, sm: 15, md: 20 },
+    left: { xs: 10, sm: 15, md: 30 },
+    width: { xs: 120, sm: 160, md: 220 },
+    backgroundColor: "#fff",
+    padding: "6px",
+    borderRadius: "6px",
+  }}
+/>
 
-          {/* RIGHT LOGO (INTEL) */}
-          <Box
-            component="img"
-            src={Auraicon1}
-            alt="Intel Logo"
-            sx={{
-              position: "absolute",
-              bottom: { xs: 8, sm: 12, md: 20 },
-              right: { xs: 8, sm: 14, md: 30 },
-              width: { xs: 65, sm: 100, md: 130, lg: 160 },
-              padding: "6px",
-              borderRadius: "6px",
-            }}
-          />
-        </Box>
-      </Box>
+  </Box>
+</Box>
 
       {/* ================= SUCCESS MESSAGE ================= */}
      {showSuccess && (
@@ -261,7 +254,7 @@ link.remove();
 )}
 
       {/* ================= MAIN SECTION ================= */}
-      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 6 }, px: { xs: 2, sm: 3 } }}>
+      <Container maxWidth="lg" sx={{ py: { xs: 4, md: 5 }, px: { xs: 2, sm: 3 } }}>
         <Box
           sx={{
             display: "flex",
@@ -277,7 +270,7 @@ link.remove();
               mt={2}
               sx={{ fontSize: { xs: "1.4rem", sm: "1.75rem", md: "2rem" } , mt:3  }}
             >
-             Set new standards for employee experience
+             Smarter actively adapts to each employee’s unique needs
             </Typography>
 
             <Typography
@@ -285,9 +278,9 @@ link.remove();
               lineHeight={1.6}
               mt={3}
               textAlign="justify"
-              sx={{ fontSize: { xs: "14px", md: "16px" } }}
+              sx={{ fontSize: { xs: "14px", md: "16px" } , mt:1 }}
             >
-             Take hyper-personalized experiences to a new level with our flexible suite of managed and professional services – all delivered by Care of One™, our Gen AI-powered platform.
+             Enable hyper-personalized workplace experiences, maximize productivity, and optimize costs with Gen AI-powered Digital Workplace Solutions.
             </Typography>
 
             <Typography
@@ -297,15 +290,15 @@ link.remove();
               textAlign="justify"
               sx={{ fontSize: { xs: "1.4rem", sm: "1.75rem", md: "2rem" } , mt:4  }}
             >
-             Collaboration & Productivity
+             Set new standards for employee experience
             </Typography>
             <Typography
               mb={1}
               lineHeight={1.6}
               textAlign="justify"
-              sx={{ fontSize: { xs: "14px", md: "16px" } }}
+              sx={{ fontSize: { xs: "14px", md: "16px" }, mt:1 }}
             >
-            Enhance collaboration, boost productivity and make the most of your software investment. Our managed and professional services deliver expert support, backup, security and migration, freeing your IT department to focus on strategic priorities.
+          Take hyper-personalized experiences to a new level with our flexible suite of managed and professional services – all delivered by Care of One™, our Gen AI-powered platform.
             </Typography>
 
             <Typography
@@ -322,7 +315,7 @@ link.remove();
               mb={1}
               lineHeight={1.6}
               textAlign="justify"
-              sx={{ fontSize: { xs: "14px", md: "16px" } }}
+              sx={{ fontSize: { xs: "14px", md: "16px" } , mt:1 }}
             >
               By leveraging Lenovo’s expert team to handle the operations and maintenance of over 450 devices, a leading optics manufacturer ensures streamlined operations, allowing them to dedicate additional resources to R&D, innovation, and business expansion, thus driving growth and staying competitive in the market.
             </Typography>
@@ -418,14 +411,14 @@ link.remove();
     mb:2
   }}
 >
-  Smarter actively adapts to each employee’s unique needs
+ Ready to create the digital workplace of the future – today?
 </Typography>
 
               <Typography
                 sx={{ mb: 4, fontSize: { xs: "14px", md: "16px" } }}
                 textAlign="justify"
               >
-              Enable hyper-personalized workplace experiences, maximize productivity, and optimize costs with Gen AI-powered Digital Workplace Solutions.
+           We’re here to help you find the right solution for your business.
               </Typography>
 
               {[
@@ -522,7 +515,7 @@ link.remove();
                       </a>{" "}
                       and{" "}
                       <a
-                        href="https://www.intel.com/content/www/us/en/privacy/intel-privacy-notice.html"
+                        href="https://www.lenovo.com/in/en/privacy/?orgRef=https%253A%252F%252Fwww.google.com%252F&srsltid=AfmBOopfgkmG9XooJwZIq-S2_CNFYJS-p8SXm6mptMjpHidEwlcowRJG"
                         target="_blank"
                         rel="noopener noreferrer"
                         style={{ color: "#1976d2" }}
@@ -540,40 +533,90 @@ link.remove();
       </Container>
 
       {/* ================= FOOTER & LEGAL ================= */}
-      <Box sx={{ backgroundColor: "#e6e6e6", py: { xs: 3, md: 4 } }}>
-        <Container maxWidth="lg" sx={{ px: { xs: 2, sm: 3 } }}>
-          <Typography
-            variant="caption"
-            fontSize={{ xs: "12px", md: "13px" }}
-            display="block"
-            sx={{ mb: 2, color: "#666", textAlign: "justify" }}
-          >
-            1. For workloads and configurations visit{" "}
-            <a
-              href="https://www.Intel.com/PerformanceIndex"
-              target="_blank"
-              rel="noreferrer"
-            >
-              www.Intel.com/PerformanceIndex
-            </a>
-            . Results may vary. <br />
-            Intel technologies may require enabled hardware, software or service activation. No
-            product or component can be absolutely secure. Your costs and results may vary.
-          </Typography>
-          <Typography
-            fontSize={{ xs: "12px", md: "13px" }}
-            textAlign="center"
-            mb={2}
-          >
-            © Intel<sup>®</sup> Corporation. Intel<sup>®</sup>, the Intel<sup>®</sup> logo, and
-            other Intel<sup>®</sup> marks are trademarks of Intel<sup>®</sup> Corporation or its
-            subsidiaries.
-          </Typography>
-          <Typography fontSize={{ xs: "12px", md: "13px" }} textAlign="center">
-            © 2026 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
-          </Typography>
-        </Container>
-      </Box>
+<Box sx={{ backgroundColor: "#f5f5f5", py: { xs: 3, md: 4 }, mt: 4 }}>
+  <Container maxWidth="lg">
+
+    {/* 🔴 Lenovo Branding */}
+    <Typography
+      sx={{
+        fontWeight: 700,
+        fontSize: { xs: "18px", md: "20px" },
+        mb: 1,
+        color: "#e2231a",
+        textAlign: "center",
+      }}
+    >
+      Lenovo
+    </Typography>
+
+    {/* 📄 Disclaimer */}
+    <Typography
+      sx={{
+        fontSize: { xs: "12px", md: "13px" },
+        color: "#666",
+        textAlign: "justify",
+        mb: 2,
+        lineHeight: 1.6,
+      }}
+    >
+      Lenovo makes no representations or warranties regarding third-party products or services.
+      Performance results may vary depending on configuration, usage, and other factors.
+      Lenovo services and solutions may require enabled hardware, software, or service activation.
+      No product or component can be absolutely secure.
+    </Typography>
+
+    {/* 🔗 Links */}
+    <Typography
+      sx={{
+        fontSize: { xs: "12px", md: "13px" },
+        textAlign: "center",
+        mb: 2,
+      }}
+    >
+      <a
+        href="https://www.lenovo.com/privacy"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#1976d2", marginRight: "10px" }}
+      >
+        Privacy Policy
+      </a>
+      |
+      <a
+        href="https://www.lenovo.com/in/en/legal/?orgRef=https%253A%252F%252Fwww.google.com%252F&srsltid=AfmBOoqcfpr6j08EJaF2VeMarHw4Rqxub-MmuqtmSs6pEvxNT1h0kO4Y"
+        target="_blank"
+        rel="noopener noreferrer"
+        style={{ color: "#1976d2", marginLeft: "10px" }}
+      >
+        Terms of Use
+      </a>
+    </Typography>
+
+    {/* © Lenovo */}
+    <Typography
+      sx={{
+        fontSize: { xs: "12px", md: "13px" },
+        textAlign: "center",
+        mb: 1,
+        color: "#333",
+      }}
+    >
+      © Lenovo 2026. All rights reserved. Lenovo and the Lenovo logo are trademarks of Lenovo.
+    </Typography>
+
+    {/* Company Footer */}
+    <Typography
+      sx={{
+        fontSize: { xs: "12px", md: "13px" },
+        textAlign: "center",
+        color: "#333",
+      }}
+    >
+      © 2026 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
+    </Typography>
+
+  </Container>
+</Box>
     </Box>
   );
 };
