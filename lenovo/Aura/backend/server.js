@@ -11,7 +11,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "http://localhost:5174",
-      "https://adbliss.tech", 
+      "https://adbliss.tech",
     ],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"],
@@ -49,7 +49,7 @@ const LenovoFormSchema = new mongoose.Schema(
 const LenovoForm = mongoose.model("LenovoAura", LenovoFormSchema);
 
 // -------------------- ROUTE --------------------
-app.post("/dco-api/lenovo-aura-form", async (req, res) => {
+app.post("/lenovo-api/lenovo-aura-form", async (req, res) => {
   try {
     const {
       firstName,
@@ -109,7 +109,7 @@ app.get("/", (req, res) => {
 });
 
 // -------------------- START SERVER --------------------
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 5004;
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Server running on port ${PORT}`);

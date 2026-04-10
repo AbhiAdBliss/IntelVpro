@@ -35,9 +35,9 @@ const Aura = () => {
   const [loading, setLoading] = useState(false);
 
    const API =
-    window.location.hostname === "localhost"
-      ? "http://localhost:5001"
-      : "https://adbliss.tech";
+  window.location.hostname === "localhost"
+    ? "http://localhost:5004"
+    : "https://adbliss.tech";
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -73,7 +73,7 @@ const Aura = () => {
   try {
     setLoading(true); // ✅ start loading
 
-     await axios.post(`${API}/dco-api/lenovo-aura-form`, form);
+     await axios.post(`${API}/lenovo-api/lenovo-aura-form`, form);
 
     setShowSuccess(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -93,7 +93,7 @@ const Aura = () => {
 };
 
   return (
-    <Box sx={{ width: "100%", backgroundColor: "#fff" }}>
+    <Box sx={{ width: "100%", backgroundColor: "#fff",  }}>
       {/* ================= BANNER ================= */}
  <Box sx={{ width: "100%", mt: 4 }}>
   <Box
@@ -210,9 +210,9 @@ const Aura = () => {
               Elevating the AI PC experience
             </Typography>
 
-            <Typography mb={3} lineHeight={1.6} mt={3} textAlign="justify">
-              Lenovo Aura Edition Copilot+ PCs offer personalized, productive, and protected AI with the latest Intel® Core™ Ultra processors.
-            </Typography>
+            <Typography mb={2} lineHeight={1.6} mt={3} textAlign="justify">
+  Lenovo Aura Edition Copilot+ PCs offer personalized, productive, and protected AI with the latest Intel<sup style={{ fontSize: "0.6em" }}>®</sup> Core Ultra processors.
+</Typography>
 
             <Typography variant="h4"  mb={1} lineHeight={1.6} textAlign="justify">
               Reimagined ThinkPad<sup>®</sup> experience
@@ -224,21 +224,35 @@ const Aura = () => {
             <Typography variant="h4" fontWeight={500} mb={1} lineHeight={1.6} textAlign="justify">
               Unleash the potential of every user
             </Typography>
-            <Typography mb={1} lineHeight={1.6} textAlign="justify">
-           The new Lenovo ThinkPad® X1 Carbon Gen 13 Aura Edition, imagined with Intel, is the lightest, thinnest, and most powerful ThinkPad® X1 Carbon yet—now optimized for peak performance with Windows 11. Discover how it can revolutionize your workflow with AI-driven features and enterprise-ready security.
-            </Typography>
-
-            <Box mt={3} display="flex" justifyContent="center">
-              <Box component="img" src={Aura2} alt="Intel Xeon AI Data Center" sx={{ width: { xs: "100%", sm: "90%", md: "520px" }, maxHeight: { xs: 220, sm: 320, md: 450 }, height: { xs: 220, sm: 320, md: 450 }, objectFit: "cover", borderRadius: "10px", display: "block" }} />
-            </Box>
+           <Typography mb={1} lineHeight={1.6} textAlign="justify">
+  The new Lenovo ThinkPad
+  <sup style={{ fontSize: "0.6em" }}>®</sup> X1 Carbon Gen 13 Aura Edition, imagined with Intel, is the lightest, thinnest, and most powerful ThinkPad
+  <sup style={{ fontSize: "0.6em" }}>®</sup> X1 Carbon yet—now optimized for peak performance with Windows 11. Discover how it can revolutionize your workflow with AI-driven features and enterprise-ready security.
+</Typography>
+         <Box mt={3} display="flex" justifyContent="center">
+  <Box
+    component="img"
+    src={Aura2}
+    alt="Intel Xeon AI Data Center"
+    sx={{
+      width: { xs: "100%", sm: "90%", md: "520px" },
+      height: "auto",              // ✅ important
+      maxHeight: { xs: 220, sm: 320, md: 450 },
+      objectFit: "contain",       // ✅ FIX
+      borderRadius: "10px",
+      display: "block"
+    }}
+  />
+</Box>
           </Box>
 
           {/* RIGHT FORM */}
           <Box sx={{ flex: 1 }}>
             <Box component="form" onSubmit={handleSubmit}>
-              <Typography mb={2} textAlign={"justify"} >
-                The Lenovo ThinkPad® X9 Aura Edition Series, imagined with Intel, redefines productivity with next-gen AI, best-in-class battery life, and innovations from Lenovo AI Now and Copilot+, exclusively on Windows 11. The best part? It's all wrapped in a sleek, quiet, and cool design. Ready to elevate your workforce's productivity? Download our solution guide now to see the X9 performance boost.
-              </Typography>
+              <Typography mb={2} textAlign={"justify"}>
+  The Lenovo ThinkPad
+  <sup style={{ fontSize: "0.6em" }}>®</sup> X9 Aura Edition Series, imagined with Intel, redefines productivity with next-gen AI, best-in-class battery life, and innovations from Lenovo AI Now and Copilot+, exclusively on Windows 11. The best part? It's all wrapped in a sleek, quiet, and cool design. Ready to elevate your workforce's productivity? Download our solution guide now to see the X9 performance boost.
+</Typography>
 
               {[
                 { label: "First Name*", name: "firstName" },
@@ -312,7 +326,7 @@ const Aura = () => {
             © Intel<sup>®</sup> Corporation. Intel<sup>®</sup>, the Intel<sup>®</sup> logo, and other Intel<sup>®</sup> marks are trademarks of Intel<sup>®</sup> Corporation or its subsidiaries.
           </Typography>
           <Typography fontSize="13px"  textAlign={"center"}>
-            © 2025 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
+            © 2026 AdBliss Digital Media LLP, Bangalore, Karnataka, India.
           </Typography>
         </Container>
       </Box>
