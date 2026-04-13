@@ -10,7 +10,8 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import Ssg1 from "../src/assets/Ssg.png";
-import logo from "../src/assets/lenovo-logo.png";
+import logo from "../src/assets/lenovo-vert-logo.png";
+import { MenuItem } from "@mui/material";
 
 
 import LaptopIcon from "@mui/icons-material/LaptopMac";
@@ -20,16 +21,17 @@ import SecurityIcon from "@mui/icons-material/Security";
 const Ssg = () => {
   const [form, setForm] = useState({
     firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-    company: "",
-    industry: "",
-    jobLevel: "",
-    jobTitle: "",
-    city: "",
-    ageConfirmed: false,
-    consent: false,
+lastName: "",
+company: "",
+jobTitle: "",
+email: "",
+phone: "",
+department: "",
+industry: "",
+companySize: "",
+requirement: "",
+ageConfirmed: false,
+consent: false,
   });
 
   const [showSuccess, setShowSuccess] = useState(false);
@@ -56,6 +58,18 @@ const Ssg = () => {
     e.preventDefault();
     let newErrors = {};
 
+// ✅ NEW VALIDATIONS (ADD HERE 👇)
+  if (!form.firstName) newErrors.firstName = "Required";
+if (!form.lastName) newErrors.lastName = "Required";
+if (!form.company) newErrors.company = "Required";
+if (!form.jobTitle) newErrors.jobTitle = "Required";
+if (!form.email) newErrors.email = "Required";
+if (!form.phone) newErrors.phone = "Required";
+if (!form.department) newErrors.department = "Required";
+if (!form.industry) newErrors.industry = "Required";
+if (!form.companySize) newErrors.companySize = "Required";
+if (!form.requirement) newErrors.requirement = "Required";
+
     const personalEmailRegex =
       /@(gmail|yahoo|outlook|hotmail|live|icloud|aol|protonmail)\./i;
     if (personalEmailRegex.test(form.email)) {
@@ -77,7 +91,7 @@ const Ssg = () => {
       setLoading(true);
 
 const response = await axios.post(
-  `${API}/ssg-api/lenovo-api/lenovo-ssg-form`,
+ `${API}/lenovo-api/lenovo-ssg-form`,
   form,
   {
     headers: {
@@ -100,17 +114,18 @@ link.remove();
       setShowSuccess(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
       setForm({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        company: "",
-        industry: "",
-        jobLevel: "",
-        jobTitle: "",
-        city: "",
-        ageConfirmed: false,
-        consent: false,
+       firstName: "",
+  lastName: "",
+  company: "",
+  jobTitle: "",
+  email: "",
+  phone: "",
+  department: "",
+  industry: "",
+  companySize: "",
+  requirement: "",
+  ageConfirmed: false,
+  consent: false,
       });
     } catch (error) {
       console.error(error);
@@ -124,12 +139,12 @@ link.remove();
     {
       icon: <LaptopIcon sx={{ fontSize: { xs: 32, md: 40 } }} />,
       title: "Initiate transformation",
-      desc: `Accelerate your digital transformation while lowering IT costs through superior managed services and our Gen AI powered Care of One delivery platform. Support and scale your portfolio to match your business' needs without disruption while elevating the employee experience.`,
+      desc: `Accelerate your digital transformation while lowering IT costs through superior managed services and our Gen AI powered Care of One™ delivery platform. Support and scale your portfolio to match your business' needs without disruption while elevating the employee experience.`,
     },
     {
       icon: <AccessTimeIcon sx={{ fontSize: { xs: 32, md: 40 } }} />,
       title: "Improve productivity",
-      desc: `Arm every employee with the tools and technologies they need to maximize their productivity while providing them a superior hyper-personalized experience. Our Gen AI powered Care of One delivery platform actively adapts to support their evolving needs – at home, in the office or on the go.`,
+      desc: `Arm every employee with the tools and technologies they need to maximize their productivity while providing them a superior hyper-personalized experience. Our Gen AI powered Care of One™ delivery platform actively adapts to support their evolving needs – at home, in the office or on the go.`,
     },
     {
       icon: <SecurityIcon sx={{ fontSize: { xs: 32, md: 40 } }} />,
@@ -141,7 +156,7 @@ link.remove();
   return (
     <Box sx={{ width: "100%", backgroundColor: "#fff" }}>
       {/* ================= BANNER ================= */}
-     <Box sx={{ width: "100%", mt: { xs: 2, md: 4 } }}>
+     <Box sx={{ width: "100%", mt: { xs: 2, md: 1 } }}>
   <Box sx={{ position: "relative", width: "100%" }}>
     
     {/* MAIN IMAGE */}
@@ -158,23 +173,29 @@ link.remove();
     />
 
     {/* 🔥 LEFT TOP LOGO */}
+
+    
    <Box
   component="img"
   src={logo}   // ✅ correct way
   alt="Lenovo Tech Today"
   sx={{
     position: "absolute",
-    top: { xs: 10, sm: 15, md: 20 },
-    left: { xs: 10, sm: 15, md: 30 },
-    width: { xs: 120, sm: 160, md: 220 },
-    backgroundColor: "#fff",
+    top: { xs: 60, sm: 12, md: 150 },
+    left: { xs: 0, sm: 0, md: 0 },
+    width: { xs: 30, sm: 60, md: 70 },
+    backgroundColor: "#e1140a",
     padding: "6px",
     borderRadius: "6px",
   }}
 />
 
+
   </Box>
 </Box>
+
+{/*  */}
+
 
       {/* ================= SUCCESS MESSAGE ================= */}
      {showSuccess && (
@@ -422,15 +443,12 @@ link.remove();
               </Typography>
 
               {[
-                { label: "First Name*", name: "firstName" },
-                { label: "Last Name*", name: "lastName" },
-                { label: "Business Email*", name: "email", type: "email" },
-                { label: "Business Phone*", name: "phone", type: "tel" },
-                { label: "Company*", name: "company" },
-                { label: "Industry*", name: "industry" },
-                { label: "Job Level*", name: "jobLevel" },
-                { label: "Job Title*", name: "jobTitle" },
-                { label: "City*", name: "city" },
+            { label: "First Name*", name: "firstName" },
+  { label: "Last Name*", name: "lastName" },
+  { label: "Company Name*", name: "company" },
+  { label: "Job Title*", name: "jobTitle" },
+  { label: "Business Email*", name: "email", type: "email" },
+  { label: "Business Phone*", name: "phone", type: "tel" },
               ].map((field, index) => (
                 <Box key={index} mb={1.5} sx={{ mt: 2 }}>
                   <Typography fontSize={{ xs: "14px", md: "16px" }} fontWeight={500}>
@@ -450,6 +468,240 @@ link.remove();
                   />
                 </Box>
               ))}
+
+              {/* Department Dropdown */}
+<Box mb={1.5} mt={2}>
+  <Typography>Department*</Typography>
+
+  <TextField
+    select
+    size="small"
+    name="department"
+    value={form.department}
+    onChange={handleChange}
+    error={!!errors.department}
+    helperText={errors.department}
+    sx={{
+      width: { xs: "100%", sm: "85%", md: "70%" },
+
+      // ✅ Transparent input
+      "& .MuiOutlinedInput-root": {
+        backgroundColor: "transparent",
+      },
+
+      // ✅ Remove white background inside select
+      "& .MuiSelect-select": {
+        padding: "10px",
+        backgroundColor: "transparent",
+      },
+    }}
+    SelectProps={{
+      MenuProps: {
+        PaperProps: {
+          sx: {
+            borderRadius: "10px",
+            mt: 1,
+
+            // ✅ Transparent dropdown background (light effect)
+            backgroundColor: "#fff",
+
+            // ✅ Menu item styling
+            "& .MuiMenuItem-root": {
+              fontSize: "14px",
+              padding: "10px 16px",
+
+              // 🔥 HOVER EFFECT
+              "&:hover": {
+                backgroundColor: "#4a90e2",
+                color: "#fff",
+              },
+            },
+
+            // 🔥 SELECTED ITEM
+            "& .Mui-selected": {
+              backgroundColor: "#4a90e2 !important",
+              color: "#fff",
+            },
+          },
+        },
+      },
+    }}
+  >
+    <MenuItem value="">Select...</MenuItem>
+    <MenuItem value="IT & IS">IT & IS</MenuItem>
+    <MenuItem value="Finance & Administration">Finance & Administration</MenuItem>
+    <MenuItem value="Support">Support</MenuItem>
+    <MenuItem value="Other">Other</MenuItem>
+    <MenuItem value="Engineering & Research">Engineering & Research</MenuItem>
+    <MenuItem value="Sales">Sales</MenuItem>
+    <MenuItem value="Marketing">Marketing</MenuItem>
+    <MenuItem value="Human Resources">Human Resources</MenuItem>
+    <MenuItem value="Operations">Operations</MenuItem>
+  </TextField>
+</Box>
+
+{/* Industry Dropdown */}
+<Box mb={1.5} mt={2}>
+  <Typography>Industry*</Typography>
+
+  <TextField
+    select
+    size="small"
+    name="industry"
+    value={form.industry}
+    onChange={handleChange}
+    error={!!errors.industry}
+    helperText={errors.industry}
+    sx={{
+      width: { xs: "100%", sm: "85%", md: "70%" },
+
+      "& .MuiOutlinedInput-root": {
+        backgroundColor: "transparent",
+      },
+
+      "& .MuiSelect-select": {
+        padding: "10px",
+        backgroundColor: "transparent",
+      },
+    }}
+    SelectProps={{
+      MenuProps: {
+        PaperProps: {
+          sx: {
+            borderRadius: "10px",
+            mt: 1,
+            backgroundColor: "#fff",
+
+            "& .MuiMenuItem-root": {
+              fontSize: "14px",
+              padding: "10px 16px",
+
+              // ✅ Hover
+              "&:hover": {
+                backgroundColor: "#4a90e2",
+                color: "#fff",
+              },
+            },
+
+            // ✅ Selected
+            "& .Mui-selected": {
+              backgroundColor: "#4a90e2 !important",
+              color: "#fff",
+            },
+          },
+        },
+      },
+    }}
+  >
+    <MenuItem value="">Select...</MenuItem>
+    <MenuItem value="Automotive">Automotive</MenuItem>
+    <MenuItem value="Education – Higher Education">Education – Higher Education</MenuItem>
+    <MenuItem value="Education – Primary and Secondary Education">Education – Primary and Secondary Education</MenuItem>
+    <MenuItem value="Energy & Utilities">Energy & Utilities</MenuItem>
+    <MenuItem value="Entertainment">Entertainment</MenuItem>
+    <MenuItem value="Financial Service – Banking">Financial Service – Banking</MenuItem>
+    <MenuItem value="Financial Service – Insurance">Financial Service – Insurance</MenuItem>
+    <MenuItem value="Government – Local and Regional">Government – Local and Regional</MenuItem>
+    <MenuItem value="Government – National and International Government">Government – National and International Government</MenuItem>
+    <MenuItem value="Healthcare">Healthcare</MenuItem>
+    <MenuItem value="IT – Hardware">IT – Hardware</MenuItem>
+    <MenuItem value="IT – Services and Software">IT – Services and Software</MenuItem>
+    <MenuItem value="IT – Telecommunications">IT – Telecommunications</MenuItem>
+    <MenuItem value="Life Sciences">Life Sciences</MenuItem>
+    <MenuItem value="Manufacturing & Construction">Manufacturing & Construction</MenuItem>
+    <MenuItem value="Media and Advertising">Media and Advertising</MenuItem>
+    <MenuItem value="Natural Resources & Materials">Natural Resources & Materials</MenuItem>
+    <MenuItem value="Restaurants and Hospitality">Restaurants and Hospitality</MenuItem>
+    <MenuItem value="Retail">Retail</MenuItem>
+    <MenuItem value="Warehousing, Couriers, Support Services">Warehousing, Couriers, Support Services</MenuItem>
+    <MenuItem value="Wholesale Durable and Nondurable Goods">Wholesale Durable and Nondurable Goods</MenuItem>
+    <MenuItem value="Other Business">Other Business</MenuItem>
+  </TextField>
+</Box>
+
+{/* Company Size */}
+<Box mb={1.5} mt={2}>
+  <Typography>Size of Company (Employees)*</Typography>
+
+  <TextField
+    select
+    size="small"
+    name="companySize"
+    value={form.companySize}
+    onChange={handleChange}
+    error={!!errors.companySize}
+    helperText={errors.companySize}
+    sx={{
+      width: { xs: "100%", sm: "85%", md: "70%" },
+
+      "& .MuiOutlinedInput-root": {
+        backgroundColor: "transparent",
+      },
+
+      "& .MuiSelect-select": {
+        padding: "10px",
+        backgroundColor: "transparent",
+      },
+    }}
+    SelectProps={{
+      MenuProps: {
+        PaperProps: {
+          sx: {
+            borderRadius: "10px",
+            mt: 1,
+            backgroundColor: "#fff",
+
+            "& .MuiMenuItem-root": {
+              fontSize: "14px",
+              padding: "10px 16px",
+
+              // ✅ Hover
+              "&:hover": {
+                backgroundColor: "#4a90e2",
+                color: "#fff",
+              },
+            },
+
+            // ✅ Selected
+            "& .Mui-selected": {
+              backgroundColor: "#4a90e2 !important",
+              color: "#fff",
+            },
+          },
+        },
+      },
+    }}
+  >
+    <MenuItem value="">Select...</MenuItem>
+    <MenuItem value="No Employees">No Employees</MenuItem>
+    <MenuItem value="1–9 Employees">1–9 Employees</MenuItem>
+    <MenuItem value="10–19 Employees">10–19 Employees</MenuItem>
+    <MenuItem value="20–49 Employees">20–49 Employees</MenuItem>
+    <MenuItem value="50–99 Employees">50–99 Employees</MenuItem>
+    <MenuItem value="100–249 Employees">100–249 Employees</MenuItem>
+    <MenuItem value="250–299 Employees">250–299 Employees</MenuItem>
+    <MenuItem value="300–499 Employees">300–499 Employees</MenuItem>
+    <MenuItem value="500–999 Employees">500–999 Employees</MenuItem>
+    <MenuItem value="1000–2999 Employees">1000–2999 Employees</MenuItem>
+    <MenuItem value="3000+ Employees">3000+ Employees</MenuItem>
+  </TextField>
+</Box>
+
+{/* Requirement */}
+<Box mb={1.5} mt={2}>
+  <Typography>Please let us know how we can help*</Typography>
+ <TextField
+  
+  multiline
+  rows={4}
+  name="requirement"
+  value={form.requirement}
+  onChange={handleChange}
+  error={!!errors.requirement}
+  helperText={errors.requirement}
+   sx={{ width: { xs: "100%", sm: "85%", md: "70%" } }} 
+/>
+</Box>
 
               <Button
                 type="submit"
